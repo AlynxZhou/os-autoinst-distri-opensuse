@@ -21,6 +21,7 @@ sub run {
     check_var("BACKEND", "ipmi") ? use_ssh_serial_console : select_console 'root-console';
 
     select_console 'user-console';
+    type_string("echo 'Alynx Zhou's test!'\n");
     assert_script_run "curl -L -v -f " . autoinst_url('/data') . " > test.data";
     assert_script_run " cpio -id < test.data";
     script_run "ls -al data";
