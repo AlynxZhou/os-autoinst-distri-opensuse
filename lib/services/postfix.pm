@@ -32,6 +32,8 @@ sub install_service {
 }
 
 sub config_service {
+    # Bug workaround
+    type_string("ln -sf /usr/lib/postfix/bin/postfix-script /usr/lib/postfix/postfix-script\n");
     # Configure postfix with TLS support (only smtpd)
     assert_script_run "curl " . data_url('postfix/main.cf') . " -o $postfix_conf";
     assert_script_run "curl " . data_url('openssl/mail-server-cert.pem') . " -o $postfix_cert";
