@@ -66,7 +66,7 @@ sub check_function {
     mailx_send_mail(subject => "openQA Testing", to => "$testapi::username\@$mail_server_name");
 
     # Verify mail received
-    assert_script_run "postfix flush; grep 'openQA Testing' /var/mail/$testapi::username";
+    assert_script_run "postfix flush; grep 'openQA Testing' /var/spool/mail/$testapi::username";
 }
 
 # check postfix service before and after migration
